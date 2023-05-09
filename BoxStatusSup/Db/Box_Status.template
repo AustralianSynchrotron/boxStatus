@@ -1,0 +1,87 @@
+# $File: //ASP/tec/epics/boxStatus/trunk/BoxStatusSup/Db/Box_Status.template $
+# $Revision: #1 $
+# $DateTime: 2016/05/14 18:21:38 $
+# Last checked in by: $Author: starritt $
+#
+# Description:
+# IOC/PLC/MOXA box status and function template.
+#
+# Template formal parameters:
+# BOX      - the box name to be pinged, e.g. SR00IOC01
+# FUNCTION - the function of the box, e.g. Sectors 1 and 2 Vacuum Control"
+# LOCATION - the location of the box, e.g. SR01ER04 or Control Room"
+#
+# Copyright (c) 2006-2014  Australian Synchrotron
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# Licence as published by the Free Software Foundation; either
+# version 2.1 of the Licence, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public Licence for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# Licence along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+#
+# Contact details:
+# andrew.starritt@synchrotron.org.au
+# 800 Blackburn Road, Clayton, Victoria 3168, Australia.
+#
+
+record (mbbi, "$(BOX):BOX_STATUS_MONITOR") {
+
+#!! archive ! redhat ! CR01ARC01 ! ctl ! monitor ! 1.0
+
+    field (DESC, "$(BOX) Status")
+    field (SCAN, "I/O Intr")
+
+    field (DTYP, "BoxStatus")
+    field (INP,  "@$(BOX)")
+
+    # Conversions and alarm severities
+    #
+    field (SHFT, "0")
+
+    field (ZRVL, "0")
+    field (ZRST, "Unknown")
+    field (ZRSV, "INVALID")
+
+    field (ONVL, "1")
+    field (ONST, "Ok")
+    field (ONSV, "NO_ALARM")
+
+    field (TWVL, "2")
+    field (TWST, "No reply")
+    field (TWSV, "MAJOR")
+
+    field (THVL, "3")
+    field (THST, "Invalid")              # Invalid host name
+    field (THSV, "MAJOR")
+
+    field (FRVL, "4")
+    field (FRST, "Timeout")              # Child process timeout
+    field (FRSV, "MAJOR")
+
+    field (UNSV, "INVALID")
+}
+
+record (stringin, "$(BOX):BOX_FUNCTION") {
+    alias ("$(BOX):IOC_FUNCTION")        # keep  IOC_FUNCTION for compatibility.
+    field (DESC, "$(BOX) Function")
+    field (SCAN, "Passive")
+    field (VAL,  "$(FUNCTION)")
+    field (PINI, "YES")
+}
+
+record (stringin, "$(BOX):BOX_LOCATION") {
+    field (DESC, "$(BOX) Location")
+    field (SCAN, "Passive")
+    field (VAL,  "$(LOCATION)")
+    field (PINI, "YES")
+}
+
+# end

@@ -1,0 +1,72 @@
+# $File: //ASP/tec/epics/boxStatus/trunk/BoxStatusSup/Db/Secondary_IOC_Status.template $
+# $Revision: #1 $
+# $DateTime: 2016/05/14 18:21:38 $
+# Last checked in by: $Author: starritt $
+#
+# Description:
+# IOC status template for a secondary IOC, i.e. an IOC with a different name
+# form the name of the box hosting the EPICS IOC.
+#
+# NOTE: Keep consistent with Box_Status.template.
+#
+# Template formal parameters:
+# IOC       - secondary IOC name, e.g. SR00IOC82
+# FUNCTION  - IDC Quadrupole Feed Forward"
+# HOST      - Box hosting this IOC, e.g. SR00IOC08
+#
+
+# This is just a copy of the host's box status.
+#
+record (mbbi, "$(IOC):BOX_STATUS_MONITOR") {
+
+#!! archive ! redhat ! CR01ARC01 ! ctl ! monitor ! 1.0
+
+    field (DESC, "$(IOC) Host Status")
+    field (SCAN, "Passive")
+    field (PINI, "YES")
+    field (INP,  "$(HOST):BOX_STATUS_MONITOR CP MS")
+
+    # Conversions and alarm severities
+    #
+    field (SHFT, "0")
+
+    field (ZRVL, "0")
+    field (ZRST, "Unknown")
+    field (ZRSV, "INVALID")
+
+    field (ONVL, "1")
+    field (ONST, "Ok")
+    field (ONSV, "NO_ALARM")
+
+    field (TWVL, "2")
+    field (TWST, "No reply")
+    field (TWSV, "MAJOR")
+
+    field (THVL, "3")
+    field (THST, "Invalid")              # Invalid host name
+    field (THSV, "MAJOR")
+
+    field (FRVL, "4")
+    field (FRST, "Timeout")              # Child process timeout
+    field (FRSV, "MAJOR")
+
+    field (UNSV, "INVALID")
+}
+
+
+record (stringin, "$(IOC):BOX_FUNCTION") {
+    alias ("$(IOC):IOC_FUNCTION")        # keep  IOC_FUNCTION for compatibility.
+    field (DESC, "$(IOC) Function")
+    field (SCAN, "Passive")
+    field (VAL,  "$(FUNCTION)")
+    field (PINI, "YES")
+}
+
+record (stringin, "$(IOC):BOX_LOCATION") {
+    field (DESC, "$(IOC) Host")
+    field (SCAN, "Passive")
+    field (VAL,  "Hosted on $(HOST)")
+    field (PINI, "YES")
+}
+
+# end

@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Box Status Module</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<H1> The Box Status Module </h1>
+
+The purpose of the box status module is to allow an EPICS IOC to check is any network
+capable box is connected/online, essentially by pinging the box. Any box that can respond
+to a ping is suitable, e.g. EPICS IOC host boxes, MOXA boxes, network switchs, motion 
+controllers.
+
+<p>The Box Status module has been developed for and on Linux.
+It could be extended for other operating systems.
+
+<h2>Including the Box Status module into an EPICS IOC</h2>
+
+Within the EPICS IOC's configure/RELEASE file:
+
+<pre>
+BOXSTATUS=$(BUNDLE)/epics/boxStatus
+</pre>
+
+<p>Within the EPICS IOC's make file (&lt;top&gt;/IOC_Name_App/src/Makefile):
+
+<pre>
+IOC_Name_DBD += devBoxStatus.dbd
+IOC_Name_LIBS += devBoxStatus
+</pre>
+
+<p>And within the IOC's st.cmd file (after iocInit):
+
+<pre>
+# when built directly into the IOC example (easy build)
+dbLoadRecords ("db/Box_Status.template", "BOX=SR16MB03DEV01, FUNCTION=Primary Widget, LOCATION=Sever Room 2")
+dbLoadRecords ("db/Box_Status.template", "BOX=SR16MB03DEV02, FUNCTION=Secondary Widget, LOCATION=Tunnel Roof")
+</pre>
+
+or
+
+<pre>
+# when not built directly into the IOC examole (bundle build)
+dbLoadRecords ("$(BOXSTATUS)/Box_Status.template", "BOX=SR16MB03DEV01, FUNCTION=Primary Widget, LOCATION=Sever Room 2")
+dbLoadRecords ("$(BOXSTATUS)/Box_Status.template", "BOX=SR16MB03DEV02, FUNCTION=Secondary Widget, LOCATION=Tunnel Roof")
+</pre>
+
+or probably better to use a substitution file if more than a limited number of devices
+ned to be specified.
+<br>
+<p>
+
+<address>
+    Suggestions and comments to: <br>
+    <a href="mailto:andrew.starritt@synchrotron.org.au">Andrew Starritt</a>:
+    (andrew.starritt@synchrotron.org.au) <br>
+    Last modified: Fri May 20 15:42:13 AEST 2022
+</address>
+</body>
+</html>

@@ -1,0 +1,9 @@
+# $File: //ASP/tec/epics/boxStatus/trunk/BoxStatusSup/src/devBoxStatus.dbd $
+# $Revision: #1 $
+# $DateTime: 2016/05/14 18:21:38 $
+# Last checked in bt: $Author: starritt $
+#
+
+device (mbbi,  INST_IO, devMbbiBoxStatus,  "BoxStatus")
+
+# end

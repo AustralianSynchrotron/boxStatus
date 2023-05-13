@@ -1,6 +1,6 @@
 # $File: //ASP/tec/epics/boxStatus/trunk/configure/RELEASE $
-# $Revision: #2 $
-# $DateTime: 2019/10/11 17:16:06 $
+# $Revision: #3 $
+# $DateTime: 2023/05/13 14:49:10 $
 # Last checked in by: $Author: starritt $
 #
 
@@ -29,12 +29,15 @@ TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 
 # Bundle variable is defined when bundled modules are prebuilt.
 # Leave blank to otherwise so that compatible with the easy build system.
+#
 BUNDLE=
 
 # If using the sequencer, point SNCSEQ at its top directory:
 #SNCSEQ=$(BUNDLE)/epics/seq
 
 # EPICS_BASE usually appears last so other apps can override stuff:
+# Modify this to reference to __your__ local EPICS base installation.
+#
 EPICS_BASE=$(BUNDLE)/epics/base
 
 # Set RULES here if you want to take build rules from somewhere

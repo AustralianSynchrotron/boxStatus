@@ -1,6 +1,6 @@
 /* $File: //ASP/tec/epics/boxStatus/trunk/BoxStatusSup/src/devBoxStatus.c $
- * $Revision: #1 $
- * $DateTime: 2016/05/14 18:21:38 $
+ * $Revision: #2 $
+ * $DateTime: 2023/05/13 14:49:10 $
  * Last checked in by: $Author: starritt $
  *
  * Description
@@ -27,22 +27,22 @@
  *
  * Note: this unit developed on and for executing on Linux.
  *
- * Copyright (c) 2014  Australian Synchrotron
+ * Copyright (c) 2014-2023  Australian Synchrotron
  *
  * This module is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation, either version 3 of the License, or (at your option) any
+ * later version.
  *
  * This module is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License along with
- * this module.  If not, see <http://www.gnu.org/licenses/>.
+ * this module.  If not, see <https://www.gnu.org/licenses/>.
  *
  * Contact details:
- * andrew.starritt@synchrotron.org.au
+ * andrews@ansto.gov.au
  * 800 Blackburn Road, Clayton, Victoria 3168, Australia.
  *
  */
@@ -71,7 +71,7 @@
 //
 //
 #define DEV_NAME       "Box Status"
-#define DEV_VERSION    "1.1"
+#define DEV_VERSION    "1.2.4"
 #define MAX_CHILDREN   10
 
 

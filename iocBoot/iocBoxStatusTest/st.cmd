@@ -1,8 +1,8 @@
 #!../../bin/linux-x86_64/BoxStatusTest
 #
 # $File: //ASP/tec/epics/boxStatus/trunk/iocBoot/iocBoxStatusTest/st.cmd $
-# $Revision: #1 $
-# $DateTime: 2016/05/14 18:21:38 $
+# $Revision: #2 $
+# $DateTime: 2023/05/13 14:49:10 $
 # Last checked in by: $Author: starritt $
 #
 
@@ -22,11 +22,9 @@ BoxStatusTest_registerRecordDeviceDriver pdbbase
 
 dbLoadTemplate ("db/test.substitutions")
 
-var devBoxStatusDebug 4
-
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
   
 dbl
- 
+  
 # end
